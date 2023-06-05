@@ -1,0 +1,20 @@
+﻿<h4>Sök kund utifrån förnamn</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ViewSearchResults">
+            <div class="form-group">
+                <label for="SearchCustomer" class="control-label">Förnamn</label>
+                <input name="SearchString" class="form-control">
+            </div><br />
+            <div class="form-group">
+                <input type="submit" value="Sök" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Tillbaka till listan</a>
+</div>
+

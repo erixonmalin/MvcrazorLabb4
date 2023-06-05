@@ -1,0 +1,47 @@
+﻿@model IEnumerable<MvcrazorLabb4.Models.BookBorrowHistory>
+
+
+@{
+    ViewData["Title"] = "ViewSearchResults";
+}
+
+<h1>Lista över bokhistorik</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Books.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Books.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customers.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Books.BookName, "Details", new { id = item.BookId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Books.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td> 
+        </tr>
+    }
+    <div>
+        <a asp-action="Index">Tillbaka till listan</a>
+    </div>
+</table>

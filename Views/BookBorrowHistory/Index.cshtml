@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MvcrazorLabb4.Models.BookBorrowHistory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Översikt</h1>
+
+<p>
+    <a asp-action="Create">Skapa ny</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Books)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Customers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BorrowDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReturnDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Books.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customers.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BorrowDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BookBorrowHistoryId">Ändra</a> |
+                <a asp-action="Details" asp-route-id="@item.BookBorrowHistoryId">Detaljer</a> |
+                <a asp-action="Delete" asp-route-id="@item.BookBorrowHistoryId">Radera</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

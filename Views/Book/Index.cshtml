@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MvcrazorLabb4.Models.BookViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Böcker</h1>
+
+<p>
+    <a asp-action="Create">Skapa ny</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.BookName, "Details", new { id = item.BookId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publisher)
+            </td>
+            <td>
+                @if ((bool)item.IsAvailable)
+                {
+                    <a href="@Url.Action("Edit", "BookBorrowHistory", new { bookId = item.BookId, returnDate = item.ReturnDate, bbh = item.bbh})" class="btn btn-success">Returnera</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Create", "BookBorrowHistory", new { bookId = item.BookId })" class="btn btn-primary">Låna</a>
+                }
+            </td>
+        </tr>
+    }
+</table>
